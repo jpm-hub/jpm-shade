@@ -2,15 +2,15 @@ main: jpm_shade.JpmShade
 package: jpm-shade
 version: 1.0.0
 language: java
-description: A simple jar shading tool for Java projects, implemented in Java and designed to be used as a jpm plugin.
+description: A simple jar shading tool for Java projects, implemented in Java and designed to be used as a jpm plugin and a cli tool.
 scripts:
   start: jpm compile && jpm run
   dev: jpm watch -r _ "jpm start"
   clean: rm -rf out/* dist
   bundle@: |
     rm -f dist/jpm-shade.jar
-    jpm bundle -fat -exec -publish && cd dist && \
-    java -cp "./*;jar_libraries/*" jpm_shade.JpmShade --main jpm_shade.JpmShade jpm-shade.jar jpm-shade-0.0.0.jar jar_libraries/*
+    jpm bundle -exec && cd dist && \
+    java -cp "./*;jar_libraries/*" jpm_shade.JpmShade --main jpm_shade.JpmShade jpm-shade.jar jpm-shade-1.0.0.jar jar_libraries/*
 
 dependencies:
   - org.ow2.asm asm:9.9.1
